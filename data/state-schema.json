@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GLMT State",
+  "description": "Runtime state and tracking for GLMT operations",
+  "type": "object",
+  "properties": {
+    "last_scan": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last scan operation"
+    },
+    "pending_files": {
+      "type": "array",
+      "description": "Files discovered but not yet processed",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {"type": "string"},
+          "filename": {"type": "string"},
+          "type": {
+            "type": "string",
+            "enum": ["rom", "patch", "texture", "archive", "unknown"]
+          },
+          "system": {"type": "string"},
+          "discovered_at": {"type": "string", "format": "date-time"},
+          "size_bytes": {"type": "integer"},
+          "checksum": {"type": "string"}
+        }
+      }
+    },
+    "processed_files": {
+      "type": "array",
+      "description": "Files that have been processed",
+      "items": {
+        "type": "object",
+        "properties": {
+          "original_path": {"type": "string"},
+          "destination_path": {"type": "string"},
+          "operation": {
+            "type": "string",
+            "enum": ["moved", "patched", "extracted", "texture_installed"]
+          },
+          "processed_at": {"type": "string", "format": "date-time"},
+          "status": {
+            "type": "string",
+            "enum": ["success", "failed", "skipped"]
+          }
+        }
+      }
+    },
+    "failed_operations": {
+      "type": "array",
+      "description": "Operations that failed and may need retry",
+      "items": {
+        "type": "object",
+        "properties": {
+          "file_path": {"type": "string"},
+          "operation": {"type": "string"},
+          "error": {"type": "string"},
+          "failed_at": {"type": "string", "format": "date-time"},
+          "retry_count": {"type": "integer", "default": 0}
+        }
+      }
+    },
+    "session": {
+      "type": "object",
+      "description": "Current session state",
+      "properties": {
+        "archive_deletion_confirmed": {"type": "boolean", "default": false},
+        "started_at": {"type": "string", "format": "date-time"}
+      }
+    }
+  }
+}

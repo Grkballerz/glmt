@@ -1,0 +1,45 @@
+{
+  "hooks": [
+    {
+      "event": "on_session_start",
+      "description": "Check for GLMT configuration on session start",
+      "action": "check_config",
+      "script": "scripts/check-config.sh"
+    },
+    {
+      "event": "on_file_mention",
+      "description": "Detect when user mentions game-related files",
+      "patterns": [
+        "\\.z64$", "\\.n64$", "\\.v64$",
+        "\\.nes$", "\\.smc$", "\\.sfc$",
+        "\\.iso$", "\\.gcm$", "\\.wbfs$",
+        "\\.gba$", "\\.gb$", "\\.gbc$",
+        "\\.nds$", "\\.3ds$", "\\.cia$",
+        "\\.ips$", "\\.bps$", "\\.ups$", "\\.xdelta$"
+      ],
+      "action": "offer_organization"
+    },
+    {
+      "event": "on_command_complete",
+      "command": "glmt:*",
+      "description": "Log GLMT operations for tracking",
+      "action": "log_operation"
+    }
+  ],
+  "actions": {
+    "check_config": {
+      "description": "Verify GLMT is configured, offer setup if not",
+      "type": "prompt",
+      "message": "GLMT configuration check"
+    },
+    "offer_organization": {
+      "description": "Offer to help organize detected game files",
+      "type": "suggest",
+      "message": "I noticed game files. Would you like help organizing them?"
+    },
+    "log_operation": {
+      "description": "Record operation to state file for history",
+      "type": "script"
+    }
+  }
+}

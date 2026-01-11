@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GLMT Configuration",
+  "description": "Configuration schema for Game Library Management Tool",
+  "type": "object",
+  "required": ["version", "downloads_path", "roms_path"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Config schema version",
+      "default": "1.0.0"
+    },
+    "frontend": {
+      "type": "string",
+      "enum": ["retroarch", "launchbox", "emulationstation", "standalone", "mixed"],
+      "description": "Primary emulator frontend"
+    },
+    "downloads_path": {
+      "type": "string",
+      "description": "Path to downloads/inbox folder to scan"
+    },
+    "roms_path": {
+      "type": "string",
+      "description": "Destination path for organized ROMs"
+    },
+    "structure": {
+      "type": "string",
+      "enum": ["hierarchical", "flat"],
+      "default": "hierarchical",
+      "description": "ROM folder structure (hierarchical = by system)"
+    },
+    "textures": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["auto", "manual", "skip"],
+          "default": "auto"
+        },
+        "path": {
+          "type": "string",
+          "description": "Manual texture path (if mode=manual)"
+        }
+      }
+    },
+    "hacks": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "type": "string",
+          "enum": ["same", "subfolder", "separate"],
+          "default": "subfolder",
+          "description": "Where to put patched ROMs"
+        },
+        "separate_path": {
+          "type": "string",
+          "description": "Path for hacks if location=separate"
+        },
+        "naming": {
+          "type": "string",
+          "enum": ["hack_name", "suffix", "ask"],
+          "default": "hack_name",
+          "description": "How to name patched files"
+        }
+      }
+    },
+    "archives": {
+      "type": "object",
+      "properties": {
+        "handling": {
+          "type": "string",
+          "enum": ["ask", "session_confirm", "archive_folder", "keep"],
+          "default": "ask",
+          "description": "What to do with processed archives"
+        },
+        "archive_path": {
+          "type": "string",
+          "description": "Path to move archives (if handling=archive_folder)"
+        }
+      }
+    },
+    "exclusions": {
+      "type": "array",
+      "items": {"type": "string"},
+      "default": [],
+      "description": "Patterns to exclude from processing"
+    },
+    "verification": {
+      "type": "string",
+      "enum": ["always", "never", "ask"],
+      "default": "never",
+      "description": "Whether to verify checksums"
+    },
+    "emulators": {
+      "type": "object",
+      "description": "Detected emulator configurations",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "installed": {"type": "boolean"},
+          "config_path": {"type": "string"},
+          "texture_path": {"type": "string"},
+          "rom_path": {"type": "string"}
+        }
+      }
+    },
+    "history": {
+      "type": "array",
+      "description": "Operation history log",
+      "items": {
+        "type": "object",
+        "properties": {
+          "timestamp": {"type": "string", "format": "date-time"},
+          "operation": {"type": "string"},
+          "files_processed": {"type": "integer"},
+          "status": {"type": "string"}
+        }
+      }
+    }
+  }
+}
