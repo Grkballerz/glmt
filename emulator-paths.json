@@ -1,0 +1,222 @@
+{
+  "emulators": {
+    "retroarch": {
+      "name": "RetroArch",
+      "systems": ["multi"],
+      "config_paths": [
+        "%APPDATA%/RetroArch/retroarch.cfg",
+        "%USERPROFILE%/RetroArch/retroarch.cfg",
+        "C:/RetroArch/retroarch.cfg",
+        "D:/RetroArch/retroarch.cfg"
+      ],
+      "texture_paths": {
+        "mupen64plus": "%RETROARCH%/system/Mupen64plus/hires_texture/",
+        "parallel_n64": "%RETROARCH%/system/HiResTextures/",
+        "beetle_psx_hw": "%RETROARCH%/system/PCSX-ReARMed/textures/"
+      },
+      "config_keys": {
+        "system_directory": "system dir for textures",
+        "rgui_browser_directory": "content browser",
+        "savefile_directory": "saves location"
+      }
+    },
+    "dolphin": {
+      "name": "Dolphin",
+      "systems": ["GCN", "WII"],
+      "config_paths": [
+        "%USERPROFILE%/Documents/Dolphin Emulator/Config/Dolphin.ini",
+        "%APPDATA%/Dolphin Emulator/Config/Dolphin.ini",
+        "C:/Program Files/Dolphin/User/Config/Dolphin.ini"
+      ],
+      "texture_paths": {
+        "default": "%USERPROFILE%/Documents/Dolphin Emulator/Load/Textures/"
+      },
+      "game_id_format": "6 alphanumeric characters (e.g., GALE01, RSBE01)",
+      "game_id_location": "ISO header, banner, or disc ID"
+    },
+    "project64": {
+      "name": "Project64",
+      "systems": ["N64"],
+      "config_paths": [
+        "%APPDATA%/Project64/Config/Project64.cfg",
+        "C:/Program Files (x86)/Project64/Config/Project64.cfg",
+        "C:/Project64/Config/Project64.cfg",
+        "D:/Project64/Config/Project64.cfg"
+      ],
+      "texture_paths": {
+        "gliden64": "%P64%/Plugin/GFX/hires_texture/",
+        "rice": "%P64%/Plugin/HiResTextures/",
+        "glide64": "%P64%/Plugin/Glide64/hires_texture/"
+      },
+      "game_id_format": "Internal ROM name or CRC",
+      "notes": "Texture path varies by graphics plugin"
+    },
+    "pcsx2": {
+      "name": "PCSX2",
+      "systems": ["PS2"],
+      "config_paths": [
+        "%USERPROFILE%/Documents/PCSX2/inis/PCSX2.ini",
+        "%USERPROFILE%/Documents/PCSX2/inis/PCSX2_ui.ini",
+        "C:/Program Files/PCSX2/inis/PCSX2.ini"
+      ],
+      "texture_paths": {
+        "default": "%USERPROFILE%/Documents/PCSX2/textures/"
+      },
+      "game_id_format": "Serial number (SLUS-12345, SLES-12345, SLPM-12345)",
+      "texture_structure": "textures/[SERIAL]/replacements/"
+    },
+    "cemu": {
+      "name": "Cemu",
+      "systems": ["WIIU"],
+      "config_paths": [
+        "%USERPROFILE%/.cemu/settings.xml",
+        "C:/Cemu/settings.xml",
+        "D:/Cemu/settings.xml"
+      ],
+      "texture_paths": {
+        "default": "%CEMU%/graphicPacks/"
+      },
+      "game_id_format": "Title ID (16-character hex)",
+      "notes": "Uses graphic packs system, not raw textures"
+    },
+    "ppsspp": {
+      "name": "PPSSPP",
+      "systems": ["PSP"],
+      "config_paths": [
+        "%USERPROFILE%/Documents/PPSSPP/PSP/SYSTEM/ppsspp.ini",
+        "%APPDATA%/PPSSPP/PSP/SYSTEM/ppsspp.ini"
+      ],
+      "texture_paths": {
+        "default": "%USERPROFILE%/Documents/PPSSPP/PSP/TEXTURES/"
+      },
+      "game_id_format": "Game ID from UMD (e.g., ULUS10041)"
+    },
+    "duckstation": {
+      "name": "DuckStation",
+      "systems": ["PS1"],
+      "config_paths": [
+        "%USERPROFILE%/Documents/DuckStation/settings.ini",
+        "%APPDATA%/DuckStation/settings.ini"
+      ],
+      "texture_paths": {
+        "default": "%DUCKSTATION%/textures/"
+      },
+      "game_id_format": "Serial (SLUS-00067)"
+    },
+    "rpcs3": {
+      "name": "RPCS3",
+      "systems": ["PS3"],
+      "config_paths": [
+        "%APPDATA%/rpcs3/config.yml"
+      ],
+      "texture_paths": {
+        "default": null
+      },
+      "notes": "Limited texture replacement support"
+    },
+    "citra": {
+      "name": "Citra",
+      "systems": ["3DS"],
+      "config_paths": [
+        "%APPDATA%/Citra/config/qt-config.ini",
+        "%USERPROFILE%/.citra/config/qt-config.ini"
+      ],
+      "texture_paths": {
+        "default": "%CITRA%/load/textures/"
+      },
+      "game_id_format": "Title ID (16-character hex)"
+    },
+    "yuzu": {
+      "name": "Yuzu",
+      "systems": ["NSW"],
+      "config_paths": [
+        "%APPDATA%/yuzu/config/qt-config.ini"
+      ],
+      "texture_paths": {
+        "default": "%YUZU%/load/"
+      },
+      "notes": "Uses mod system for textures"
+    },
+    "ryujinx": {
+      "name": "Ryujinx",
+      "systems": ["NSW"],
+      "config_paths": [
+        "%APPDATA%/Ryujinx/Config.json"
+      ],
+      "texture_paths": {
+        "default": null
+      }
+    },
+    "mesen": {
+      "name": "Mesen",
+      "systems": ["NES", "SNES", "GB", "GBC"],
+      "config_paths": [
+        "%USERPROFILE%/Documents/Mesen/settings.json"
+      ],
+      "texture_paths": {
+        "default": "%MESEN%/HdPacks/"
+      },
+      "notes": "HD packs for NES include graphics replacements"
+    }
+  },
+  "detection_order": [
+    "retroarch",
+    "dolphin",
+    "project64",
+    "pcsx2",
+    "cemu",
+    "ppsspp",
+    "duckstation",
+    "citra",
+    "yuzu",
+    "ryujinx",
+    "mesen",
+    "rpcs3"
+  ],
+  "archive_formats": {
+    "zip": {
+      "extensions": [".zip"],
+      "extract_cmd": "unzip -o \"{file}\" -d \"{dest}\"",
+      "list_cmd": "unzip -l \"{file}\""
+    },
+    "7z": {
+      "extensions": [".7z"],
+      "extract_cmd": "7z x \"{file}\" -o\"{dest}\" -y",
+      "list_cmd": "7z l \"{file}\""
+    },
+    "rar": {
+      "extensions": [".rar"],
+      "extract_cmd": "unrar x \"{file}\" \"{dest}\"",
+      "list_cmd": "unrar l \"{file}\""
+    },
+    "tar": {
+      "extensions": [".tar.gz", ".tgz", ".tar.bz2", ".tar.xz"],
+      "extract_cmd": "tar -xf \"{file}\" -C \"{dest}\"",
+      "list_cmd": "tar -tf \"{file}\""
+    }
+  },
+  "patch_formats": {
+    "ips": {
+      "extensions": [".ips"],
+      "tool": "flips",
+      "apply_cmd": "flips --apply \"{patch}\" \"{source}\" \"{output}\""
+    },
+    "bps": {
+      "extensions": [".bps"],
+      "tool": "flips",
+      "apply_cmd": "flips --apply \"{patch}\" \"{source}\" \"{output}\"",
+      "has_checksum": true
+    },
+    "ups": {
+      "extensions": [".ups"],
+      "tool": "flips",
+      "apply_cmd": "flips --apply \"{patch}\" \"{source}\" \"{output}\"",
+      "has_checksum": true
+    },
+    "xdelta": {
+      "extensions": [".xdelta", ".vcdiff"],
+      "tool": "xdelta3",
+      "apply_cmd": "xdelta3 -d -s \"{source}\" \"{patch}\" \"{output}\""
+    }
+  }
+}
