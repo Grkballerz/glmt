@@ -1,6 +1,6 @@
 # GLMT - Game Library Management Tool
 
-A Claude Code plugin for autonomous ROM and game file organization.
+A cross-platform Claude Code plugin for autonomous ROM and game file organization.
 
 ## Features
 
@@ -8,8 +8,7 @@ A Claude Code plugin for autonomous ROM and game file organization.
 - **Organize** ROMs into system-specific folders automatically
 - **Patch** ROMs with IPS, BPS, UPS, and xdelta patches
 - **Install** texture packs to correct emulator directories
-- **Track** all operations in a SQLite database
-- **Auto-install** required tools (7-Zip, Flips, xdelta3, UnRAR)
+- **Cross-platform** - works on Windows, macOS, Linux, and Android (Termux)
 
 ## Supported Systems
 
@@ -29,58 +28,84 @@ NES, SNES, N64, GameCube, Wii, Wii U, Switch, GB, GBC, GBA, DS, 3DS, PS1, PS2, P
 
 ## Installation
 
-1. Copy the command files to your Claude Code commands directory:
-   ```
-   ~/.claude/commands/glmt*.md
-   ```
+### Via Plugin Manager (Recommended)
 
-2. Copy the project folder:
-   ```
-   ~/.claude/projects/glmt/
-   ```
+```bash
+/plugin add Grkballerz/glmt
+```
 
-3. Run `/glmt` in Claude Code to start setup
+### Manual Installation
+
+Clone this repository and install as a local plugin:
+
+```bash
+git clone https://github.com/Grkballerz/glmt.git
+claude --plugin-dir ./glmt
+```
 
 ## Commands
 
+After installation, these commands are available:
+
 | Command | Description |
 |---------|-------------|
-| `/glmt` | Main menu / setup wizard |
-| `/glmt-setup` | Re-run configuration wizard |
-| `/glmt-scan` | Scan downloads for new files |
-| `/glmt-organize` | Move ROMs to system folders |
-| `/glmt-patch` | Apply ROM hack patches |
-| `/glmt-textures` | Install texture packs |
-| `/glmt-auto` | Run all operations autonomously |
-| `/glmt-status` | View database and statistics |
-| `/glmt-install-tools` | Reinstall required tools |
+| `/glmt:glmt` | Main menu / setup wizard |
+| `/glmt:setup` | Re-run configuration wizard |
+| `/glmt:scan` | Scan downloads for new files |
+| `/glmt:organize` | Move ROMs to system folders |
+| `/glmt:patch` | Apply ROM hack patches |
+| `/glmt:textures` | Install texture packs |
+| `/glmt:auto` | Run all operations autonomously |
+| `/glmt:status` | View configuration and stats |
 
 ## How It Works
 
-1. **First Run**: Tools are automatically downloaded and installed
-2. **Setup Wizard**: Answer 10 questions about your setup
+1. **First Run**: Setup wizard asks 10 questions about your setup
+2. **Configuration**: Settings saved to `~/.config/glmt/` (Linux/macOS) or `%USERPROFILE%\.glmt\` (Windows)
 3. **Autonomous Mode**: GLMT scans, categorizes, and organizes your files
-4. **User Confirmation**: Always asks before deleting archives or when multiple patches exist
+4. **User Confirmation**: Always asks before deleting archives or when multiple patches exist for the same ROM
 
-## Project Structure
+## Required Tools
+
+GLMT needs these tools for full functionality:
+
+| Tool | Purpose | Installation |
+|------|---------|--------------|
+| 7z/unzip | Archive extraction | `brew install p7zip` / `apt install p7zip-full` / `pkg install p7zip` |
+| flips | IPS/BPS/UPS patching | Download from [GitHub](https://github.com/Alcaro/Flips/releases) |
+| xdelta3 | xdelta patching | `brew install xdelta` / `apt install xdelta3` / `pkg install xdelta3` |
+
+GLMT will detect missing tools and provide platform-specific installation instructions.
+
+## Plugin Structure
 
 ```
 glmt/
-├── .glmt/
-│   ├── schema.sql      # Database schema
-│   └── glmt.db         # SQLite database (created on first run)
-├── tools/
-│   └── bin/            # Auto-installed tools
-├── emulator-paths.json # Emulator detection reference
-├── .gitignore
-└── README.md
+├── .claude-plugin/
+│   └── plugin.json       # Plugin manifest
+├── commands/
+│   ├── glmt.md           # Main command
+│   ├── setup.md          # Setup wizard
+│   ├── scan.md           # Scanner
+│   ├── organize.md       # ROM organizer
+│   ├── patch.md          # Patcher
+│   ├── textures.md       # Texture installer
+│   ├── auto.md           # Autonomous mode
+│   └── status.md         # Status viewer
+├── data/
+│   └── emulator-paths.json
+├── README.md
+└── .gitignore
 ```
 
-## Requirements
+## Platform Support
 
-- Windows 10/11
-- Claude Code CLI
-- Internet connection (for tool downloads on first run)
+| Platform | Status |
+|----------|--------|
+| Windows 10/11 | Supported |
+| macOS 10.15+ | Supported |
+| Linux (Ubuntu/Debian) | Supported |
+| Android (Termux) | Supported |
 
 ## License
 

@@ -1,0 +1,9 @@
+{
+  "name": "glmt",
+  "description": "Game Library Management Tool - Autonomous ROM, texture pack, and ROM hack organizer",
+  "version": "1.0.0",
+  "author": "Grkballerz",
+  "repository": "https://github.com/Grkballerz/glmt",
+  "license": "MIT",
+  "keywords": ["gaming", "roms", "emulation", "organization", "texture-packs", "rom-hacks"]
+}

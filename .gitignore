@@ -1,22 +1,15 @@
-# GLMT Data (user-specific)
-.glmt/glmt.db
-.glmt/*.db-journal
-.glmt/*.db-wal
-.glmt/*.db-shm
-
-# Downloaded tools (auto-installed)
-tools/bin/
-tools/temp/
-
-# Temp files
-*.tmp
-*.temp
-.glmt_temp/
-
 # OS files
-Thumbs.db
 .DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
 
 # IDE
 .vscode/
 .idea/
+*.swp
+*.swo
+
+# Temp files
+*.tmp
+*.temp
