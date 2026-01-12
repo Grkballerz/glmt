@@ -1,0 +1,20 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "glmt",
+  "owner": {
+    "name": "Grkballerz"
+  },
+  "plugins": [
+    {
+      "name": "glmt",
+      "description": "Game Library Management Tool - Autonomous ROM, texture pack, and ROM hack organizer",
+      "version": "1.0.0",
+      "author": {
+        "name": "Grkballerz"
+      },
+      "source": "../",
+      "category": "utilities",
+      "tags": ["gaming", "roms", "emulation", "organization"]
+    }
+  ]
+}
