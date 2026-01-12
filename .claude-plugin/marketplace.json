@@ -12,7 +12,7 @@
       "author": {
         "name": "Grkballerz"
       },
-      "source": ".",
+      "source": "./plugins/glmt",
       "category": "utilities",
       "tags": ["gaming", "roms", "emulation", "organization"]
     }
